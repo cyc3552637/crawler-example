@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration
+    xmlns="http://ch.qos.logback/xml/ns/logback"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://ch.qos.logback/xml/ns/logback https://raw.githubusercontent.com/enricopulatzo/logback-XSD/master/src/main/xsd/logback.xsd">
+
+     <property name="LOG_HOME" value="D:\\crawl\\log"/>
+     <property name="LOG_PATTERN"
+    value="%d{yyyy-MM-dd HH:mm:ss} [%p][%c][%M][%L]-> %m%n"/>
+        
+
+    <!-- 控制台Appender -->
+   <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+         <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset>utf8</charset>
+       </encoder>
+    </appender> 
+
+    <!-- 输出本地的日志文件，由Spring Admin查看使用 -->
+    <appender name="logfile" class="ch.qos.logback.core.rolling.RollingFileAppender"> 
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_HOME}/log.%d{yyyy-MM-dd}.log</FileNamePattern>                
+           <MaxFileSize>10MB</MaxFileSize>                 
+        </rollingPolicy>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset>utf8</charset>
+       </encoder>
+    </appender>
+
+ 
+
+    <!-- 相当于logger元素，只是name值已经确定为root了 -->
+    <root level="INFO">
+        <appender-ref ref="console" />
+        <appender-ref ref="logfile" />
+    </root>
+</configuration>
