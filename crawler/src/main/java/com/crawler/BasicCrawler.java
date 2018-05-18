@@ -10,6 +10,9 @@ import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
@@ -17,6 +20,8 @@ import java.util.regex.Pattern;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.util.DuplicateRemoval;
+import com.util.GetContent;
 import com.util.Save;
 
 import edu.uci.ics.crawler4j.crawler.Page;
@@ -72,39 +77,31 @@ public class BasicCrawler extends WebCrawler {
 	   */
 	  @Override
 	  public void visit(Page page) {
-		StringBuilder title=new StringBuilder("");
-		StringBuilder content=new StringBuilder("=========================================").append("\r\n");
 		
-		String pathname = "D:/crawl/output/"+page.getWebURL().getDocid()+".txt";
+	
+		Date date = new Date();  
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-hh-mm");  
+        String dateNowStr = sdf.format(date);
+		String pathname = "D:/crawl/output/"+dateNowStr+"/";
+		String filename=page.getWebURL().getDocid()+".txt";
 		
-		title.append("docId:"+page.getWebURL().getDocid()).append("\r\n")
-		.append("url:"+page.getWebURL().getURL()).append("\r\n")
-		.append("上级页面docId:"+page.getWebURL().getParentDocid()).append("\r\n");
-		
-		if (page.getParseData() instanceof HtmlParseData) { // 判断是否是html数据 
-		      HtmlParseData htmlParseData = (HtmlParseData) page.getParseData(); // 强制类型转换，获取html数据对象
-		
-		      title.append("纯文本长度: " + htmlParseData.getText().length()).append("\r\n")
-		      .append("html长度: " +htmlParseData.getHtml().length()).append("\r\n")
-		      .append("输出链接个数: " + htmlParseData.getOutgoingUrls().size()).append("\r\n");
-		      content.append(htmlParseData.getText()).append("\r\n")
-		      .append("=========================================").append("\r\n");
-		    
-		    }
-		
+		String pathnameforurl = "D:/crawl/url/";
+		String filenameforurl=page.getWebURL().getDomain()+".txt";
+		GetContent getcontent=new GetContent();
 		Save se=new Save();
 		
-		se.save(pathname, title.toString());
-		se.save(pathname, content.toString());
+		se.save(pathname,filename,getcontent.getTitle(page).toString());
+		se.save(pathname,filename,getcontent.getContent(page).toString());
+		se.save(pathnameforurl,filenameforurl,getcontent.getUrl(page).toString());
 		
-		
-		
-		
-		
-		
+		DuplicateRemoval duplicateremoval=new DuplicateRemoval();
+		duplicateremoval.removerepeat(pathnameforurl+filenameforurl);
 		
 		
 		}
+	  
+
+
 		
 	    
 	    

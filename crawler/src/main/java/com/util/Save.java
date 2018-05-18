@@ -15,16 +15,20 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
 public class Save {
-	public void save(String path,String content) {
+	public void save(String path,String filename,String content) {
 		
 	
 		try {
-			
 			if(Files.exists(Paths.get(path)) == false){
-				Files.write(Paths.get(path), content.getBytes());	
+				Files.createDirectories(Paths.get(path));
+			}
+			
+			if(Files.exists(Paths.get(path+filename)) == false){
+                
+				Files.write(Paths.get(path+filename), content.getBytes());	
 			}
 			else{
-			Files.write(Paths.get(path), content.getBytes(),StandardOpenOption.APPEND);
+			Files.write(Paths.get(path+filename), content.getBytes(),StandardOpenOption.APPEND);
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
