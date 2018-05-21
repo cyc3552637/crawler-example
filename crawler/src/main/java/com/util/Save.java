@@ -15,6 +15,8 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
 public class Save {
+	
+	//信息存储在txt文件内
 	public void save(String path,String filename,String content) {
 		
 	

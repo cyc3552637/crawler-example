@@ -10,6 +10,9 @@ import java.util.List;
 import java.util.Set;
 
 public class DuplicateRemoval {
+	
+	//file去重
+	
 	public void removerepeat(String path) {
 		
 		List<String> lines;

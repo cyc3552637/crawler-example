@@ -54,7 +54,7 @@ public class MultipleCrawlerController {
 	    controller2.addSeed("http://www.java1234.com/");
 	    controller2.addSeed("http://www.java1234.com/a/bysj/javaweb/");
 
-	    // 启动爬虫，爬虫从此刻开始执行爬虫任务，根据以上配置  根据源码  这种启动是无阻塞的
+	    // 启动爬虫，爬虫从此刻开始执行爬虫任务
 	    controller1.startNonBlocking(BasicCrawler.class, 5);
 	    controller2.startNonBlocking(BasicCrawler.class, 7);
 	 

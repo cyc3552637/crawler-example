@@ -4,6 +4,12 @@ import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.parser.HtmlParseData;
 
 public class GetContent {
+	
+	
+	 // getTitle获取头信息封装
+	 // getContent获取页面信息封装
+	 // getUrl获得页面内其他链接地址
+	
 	  public String getTitle(Page page){
 		  StringBuilder title=new StringBuilder("");
 		  title.append("docId:"+page.getWebURL().getDocid()).append("\r\n")
