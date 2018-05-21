@@ -78,11 +78,10 @@ public class BasicCrawler extends WebCrawler {
 	  @Override
 	  public void visit(Page page) {
 		
-	
 		Date date = new Date();  
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-hh-mm");  
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-hh");  
         String dateNowStr = sdf.format(date);
-		String pathname = "D:/crawl/output/"+dateNowStr+"/";
+		String pathname = "D:/crawl/output/"+dateNowStr+"/"+page.getWebURL().getDomain()+"/";
 		String filename=page.getWebURL().getDocid()+".txt";
 		
 		String pathnameforurl = "D:/crawl/url/";

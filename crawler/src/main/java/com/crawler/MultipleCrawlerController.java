@@ -25,8 +25,8 @@ public class MultipleCrawlerController {
 	    config1.setPolitenessDelay(1000); // 设置1秒爬取一次
 	    config2.setPolitenessDelay(2000); // 设置2秒爬取一次
 	 
-	    config1.setMaxPagesToFetch(5); // 设置最大爬取页数5
-	    config2.setMaxPagesToFetch(6); // 设置最大爬取页数6
+	    config1.setMaxPagesToFetch(100); // 设置最大爬取页数
+	    config2.setMaxPagesToFetch(100); // 设置最大爬取页数
 	 
 	    // 使用两个PageFetcher实例
 	    PageFetcher pageFetcher1 = new PageFetcher(config1);
