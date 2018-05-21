@@ -22,8 +22,8 @@ public class MultipleCrawlerController {
 	    config1.setCrawlStorageFolder(crawlStorageFolder + "/crawler1");
 	    config2.setCrawlStorageFolder(crawlStorageFolder + "/crawler2");
 	 
-	    config1.setPolitenessDelay(1000); // 设置1秒爬取一次
-	    config2.setPolitenessDelay(2000); // 设置2秒爬取一次
+	    config1.setPolitenessDelay(1000); // 设置x秒爬取一次
+	    config2.setPolitenessDelay(2000); // 设置x秒爬取一次
 	 
 	    config1.setMaxPagesToFetch(100); // 设置最大爬取页数
 	    config2.setMaxPagesToFetch(100); // 设置最大爬取页数
@@ -42,7 +42,7 @@ public class MultipleCrawlerController {
 	    // 分别指定目标爬虫域名
 	    String[] crawler1Domains = {"http://www.zuidaima.com/"}; 
 	    String[] crawler2Domains = {"http://www.java1234.com/"}; 
-	 
+ 
 	    // 设置自定义数据
 	    controller1.setCustomData(crawler1Domains); 
 	    controller2.setCustomData(crawler2Domains);
@@ -53,7 +53,7 @@ public class MultipleCrawlerController {
 	 
 	    controller2.addSeed("http://www.java1234.com/");
 	    controller2.addSeed("http://www.java1234.com/a/bysj/javaweb/");
-	 
+
 	    // 启动爬虫，爬虫从此刻开始执行爬虫任务，根据以上配置  根据源码  这种启动是无阻塞的
 	    controller1.startNonBlocking(BasicCrawler.class, 5);
 	    controller2.startNonBlocking(BasicCrawler.class, 7);
